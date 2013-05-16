@@ -1,0 +1,56 @@
+body {
+	margin: 0;
+	padding: 0 0 0 0;
+	background: none;
+	font: normal 0.9em/150% arial, verdana, sans-serif;
+}
+
+.menu {
+	margin-bottom: 3%;
+}
+
+.container {
+	width: 60%;
+}
+
+.client-container, .client-details-container {
+	float: left;
+}
+
+.client-search-container {
+	padding-bottom: 3%;
+	float: left;
+}
+
+.client-search-container input {
+	width: 75%;
+}
+
+.client-search-container button {
+	width: 12%;
+}
+
+.client-search-container table {
+	margin-top: 3%;
+}
+
+.table-header-phone {
+	width: 15%;
+}
+
+.client-table tr:hover {
+	background-color: lightgrey;
+}
+
+.client-details-container {
+	width: 38%;
+	margin-left: 2%;
+}
+
+.client-details-form .medium {
+	width: 50%;
+}
+
+.client-details-form .small {
+	width: 25%;
+}
