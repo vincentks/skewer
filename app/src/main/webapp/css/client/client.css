@@ -1,0 +1,24 @@
+.client-search-container {
+	padding-bottom: 3%;
+	float: left;
+}
+
+.client-search-container input {
+	width: 75%;
+}
+
+.client-search-container button {
+	width: 12%;
+}
+
+.client-search-container table {
+	margin-top: 3%;
+}
+
+.client-details-form .medium {
+	width: 50%;
+}
+
+.client-details-form .small {
+	width: 25%;
+}
