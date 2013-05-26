@@ -9,6 +9,16 @@
 	</welcome-file-list>
 
 	<servlet>
+		<servlet-name>client</servlet-name>
+		<jsp-file>/views/client/container.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>client</servlet-name>
+		<url-pattern>/client</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>supplier</servlet-name>
 		<jsp-file>/views/supplier/container.jsp</jsp-file>
 	</servlet>
