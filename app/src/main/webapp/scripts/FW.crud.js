@@ -8,6 +8,10 @@ FW.crud = function(userOptions) {
 
 	var options = {
 		/**
+		 * string - module key
+		 * */
+		module: '',
+		/**
 		 * string - identifies the storage key used by this module
 		 * */
 		key: '',
@@ -192,6 +196,8 @@ FW.crud = function(userOptions) {
 	
 	that.init = function() {
 		$.pnotify.defaults.history = false;
+		
+		$('.menu li[data-module="' + options.module + '"]').addClass('current');
 
 		$('#saveButton').click(save);
 		$('#tableSearchField').keyup(search);

@@ -20,7 +20,7 @@
 
 	<jsp:include page="/views/header.jsp"></jsp:include>
 
-	<div class="container client-search-container">
+	<div class="container search-container">
 		<form>
 			<input id="tableSearchField" name="tableSearchField" type="text" />	
 			<button id="searchButton">Pesquisar</button>

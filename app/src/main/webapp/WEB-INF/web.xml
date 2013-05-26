@@ -7,4 +7,15 @@
 	<welcome-file-list>
 		<welcome-file>/views/client/container.jsp</welcome-file>
 	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>supplier</servlet-name>
+		<jsp-file>/views/supplier/container.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>supplier</servlet-name>
+		<url-pattern>/supplier</url-pattern>
+	</servlet-mapping>
+
 </web-app>

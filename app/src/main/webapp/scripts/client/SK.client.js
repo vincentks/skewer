@@ -7,6 +7,7 @@ SK.client = function(userOptions) {
 	var that = {};
 	
 	var crud = new FW.crud({
+		module: 'client',
 		key: 'clientList',
 		deleteSuccessMessage: 'Cliente excluído com sucesso.',
 		saveSuccessMessage: 'Cliente atualizado com sucesso.',

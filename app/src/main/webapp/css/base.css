@@ -30,3 +30,27 @@ body {
 	margin-left: 2%;
 }
 
+.search-container {
+	padding-bottom: 3%;
+	float: left;
+}
+
+.search-container input {
+	width: 75%;
+}
+
+.search-container button {
+	width: 12%;
+}
+
+.search-container table {
+	margin-top: 3%;
+}
+
+.details-form .medium {
+	width: 50%;
+}
+
+.details-form .small {
+	width: 25%;
+}
