@@ -5,10 +5,10 @@ if (FW === undefined) {
 FW.crud = function(userOptions) {
 	
 	var that = {};
-
+	
 	var options = {
 		/**
-		 * string - module key
+		 * string - module key, forwarded to the ui component
 		 * */
 		module: '',
 		/**
@@ -16,130 +16,51 @@ FW.crud = function(userOptions) {
 		 * */
 		key: '',
 		/**
-		 * string - message shown to the user once a row is deleted successfully
+		 * function - validation executed once the user tries to save a record
 		 * */
-		deleteSuccessMessage: 'Registro excluído com sucesso',
+		saveValidation: $.noop,
 		/**
-		 * string - message shown when user successfully saves a record
+		 * FW.ui component to be used by this component - has to be defined when different than FW.ui
 		 * */
-		saveSuccessMessage: 'Registro atualizado com sucesso.',
-		/**
-		 * callback - validation executed once the user tries to save a record
-		 * */
-		saveValidation: $.noop
+		ui: null
 	};
 	
     $.extend(true, options, userOptions);
-	
-    /**
-     * params = {
-     *     value: object to persist	
-     * }
-     * */
-	function persist(object) {
-		window.localStorage.setItem(options.key, JSON.stringify(object));
-		console.log(JSON.stringify(object));
-	
-		// TODO post to server and then e-mail
-//		$.ajax({
-//			url: 'mailto:',
-//			type: 'POST',
-//			data: {
-//				value: JSON.stringify(clientList)
-//			}
-//		});
-	}
-	
-	function retrieve() {
-		var result = $.parseJSON(window.localStorage.getItem(options.key));
-		if (result == null || result.length == 0) {
-			result = new Array();
-			
-			persist(result);
-		}		
 
-		console.log(result);
-		return result;
-	}
-	
-	function populateTable() {
-		var list = retrieve();
-		
-		$('.data-table tbody tr').remove();
-		$.map($(list), function(value, i) {
-			value.index = function() {
-				return i;
-			};
-			
-			var $tr = Mustache.render($('#tableRowTemplate').html(), value);
-			
-			$('.data-table tbody').append($tr);
-		});
-	}	
-
-	function deleteRecord() {
-		var list = retrieve();
-		
-		var $row = $('.data-table .selected');
-
-		list.splice($row.data('rowIndex'), 1);
-
-		persist(list);
-		search();
-		populateTable();
-
-		$('.details-container').removeClass('show');
-		$.pnotify({
-			title: 'Sucesso',
-			text: options.deleteSuccessMessage,
-			type: 'success',
-			delay: 1500,
-			styling: 'jqueryui'
-		});			
-		
-		$('#hideDetailsButton').click();
-	}
-	
-	function search() {
-		var $field = $('#tableSearchField');
-
-		$('.data-table tbody tr.warning').remove();
-		
-		if ($.trim($field.val()) == '') {
-			$('.data-table tbody tr').show();
-		} else {
-			$('.data-table tbody tr').each(function(i, value) {
-				var $row = $(value);
-
-				var rowText = $.trim($row.text().toUpperCase());
-				var fieldText = $.trim($field.val().toUpperCase());
-				
-				if (rowText.indexOf(fieldText) > -1) {
-					$(this).show();
-				} else {
-					$(this).hide();
-				}
+    var database = new FW.db({
+    	key: options.key
+    });
+    
+	that.init = function() {
+		if (options.ui == null) {
+		    options['ui'] = new FW.ui({
+				crud: that,
+				module: options.module
 			});
 		}
-		
-		if ($('.data-table tbody tr:visible').length == 0) {
-			var $tr = $('#emptyTableTemplate')
-			$('.data-table tbody').append($tr.html());
-		}
+
+	    options.ui.init();
 	}
 	
-	function save() {
+	that.get = function(id) {
+		return database.get(id);
+	}
+	
+	that.list = function() {
+		return database.list();
+	}
+	
+	that.deleteRecord = function(id) {
+		database.deleteRecord(id);
+		options.ui.onDeleteRecord();
+	}
+
+	that.save = function(object) {
 		var result = false;
 		
-		var row = {};
+		var message = options.saveValidation(object);
 		
-		$.each($('.details-container form input, .details-container form textarea'), function(i, value) {
-			row[$(value).attr('id')] = $(value).val();
-		});
-
-		var message = options.saveValidation(row);
-		
-		if (message != '') {
+		if ($.trim(message) != '') {
 			$.pnotify({
 				title: 'Erro',
 				text: $.trim(message),
@@ -147,103 +68,16 @@ FW.crud = function(userOptions) {
 				styling: 'jqueryui'
 			});			
 		} else {
-			var list = retrieve();
-			
-			var $selectedRow = $('.data-table .selected');
-			var rowIndex = -1;
-			
-			if ($selectedRow.length > 0) {
-				rowIndex = $selectedRow.data('rowIndex');
-				list[rowIndex] = row;
-			} else {
-				list.push(row);
-			}
-			
-			persist(list);
-			populateTable();
-			search();
+			database.save(object);
 
-			if (rowIndex > -1) {
-				$('.data-table tr[data-row-index="' + rowIndex + '"]').addClass('selected');
-			} else {
-				$('.data-table tr:last').addClass('selected');
-			}
-			
-			
+			options.ui.onSaveSuccess(object);
+
 			result = true;
-			
-			$.pnotify({
-				title: 'Sucesso',
-				text: options.saveSuccessMessage,
-				type: 'success',
-				delay: 1500,
-				styling: 'jqueryui'
-			});			
 		}
 		
 		return result;
 	}
 	
-	function showDetails() {
-		$('.details-container').show();
-
-		$('.details-container form input, .details-container form textarea').val('');
-
-		$('.data-table tr').removeClass('selected');
-
-		$('.details-container form input:first').focus();
-	}
-	
-	that.init = function() {
-		$.pnotify.defaults.history = false;
-		
-		$('.menu li[data-module="' + options.module + '"]').addClass('current');
-
-		$('#saveButton').click(save);
-		$('#tableSearchField').keyup(search);
-		$('#deleteButton').click(deleteRecord);
-		$('#addButton').click(showDetails);
-		
-		$('#hideDetailsButton').click(function(e) {
-			$('.details-container').hide('drop', { direction: 'horizontal' }, 1000);
-		});	
-		
-		$('#saveAddButton').click(function() {
-			var saveResult = save();
-			if (saveResult) {
-				showDetails();
-			}
-		});
-
-		$('#searchButton').click(function() {
-			populateTable();
-			search();
-		});
-
-		$('button').click(function(e) {
-			e.preventDefault();
-			e.stopPropagation();
-		});
-		
-		$('body').off('click', '.data-table tbody tr').on('click', '.data-table tbody tr', function() {
-        	$('.data-table tbody tr').removeClass('selected');
-        	$(this).addClass('selected');
-        	
-			var list = retrieve();
-			
-			var row = list[$(this).data('rowIndex')];
-			
-			$.map(row, function(value, key) {
-				$('.details-container form #' + key).val(value);
-			});
-
-			$('.details-container').show();
-			$('.details-container form input:first').focus();
-        });
-
-        populateTable();
-	}
-
 	return that;
 }
 

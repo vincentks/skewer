@@ -28,4 +28,14 @@
 		<url-pattern>/supplier</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>admin</servlet-name>
+		<jsp-file>/views/admin/container.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>admin</servlet-name>
+		<url-pattern>/admin</url-pattern>
+	</servlet-mapping>
+
 </web-app>

@@ -13,4 +13,7 @@
 <script type="text/javascript" src="scripts/3rdparty/jquery.pnotify.js"></script>
 <script type="text/javascript" src="scripts/3rdparty/jquery.mustache.js"></script>
 <script type="text/javascript" src="scripts/3rdparty/kickstart.js"></script>                             <!-- KICKSTART -->
-<script type="text/javascript" src="scripts/FW.crud.js"></script>                             <!-- KICKSTART -->
+<script type="text/javascript" src="scripts/FW.crud.js"></script>                              
+<script type="text/javascript" src="scripts/FW.db.js"></script>                             
+<script type="text/javascript" src="scripts/FW.ui.js"></script>                             
+<script type="text/javascript" src="scripts/FW.silentUI.js"></script>                             

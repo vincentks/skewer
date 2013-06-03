@@ -29,6 +29,7 @@
 	
 		<table class="sortable data-table">
 			<thead>
+				<th>Id</th>
 				<th>Nome</th>
 				<th class="table-header-phone">Celular</th>
 				<th class="table-header-phone">Telefone fixo</th>
@@ -40,7 +41,9 @@
 	
 	<div class="details-container hide">
 		<h5>Detalhes</h5>
-		<form class="vertical client-details-form">
+		<form class="vertical details-form">
+			<input type="hidden" name="id" id="id" value="">
+
 			<label for="name">Nome</label>
 			<input class="medium" type="text" name="name" id="name">
 			
@@ -65,11 +68,12 @@
 	</div>
 
 	<script type="text/x-jquery-tmpl" id="emptyTableTemplate">
-		<tr class="warning"><td colspan="3">Nenhum cliente encontrado.</td></tr>
+		<tr class="warning"><td colspan="4">Nenhum cliente encontrado.</td></tr>
 	</script>
 
 	<script type="text/x-jquery-tmpl" id="tableRowTemplate">
-		<tr data-row-index="{{index}}">
+		<tr data-id="{{id}}">
+			<td>{{id}}</td>
 			<td>{{name}}</td>
 			<td>{{cell}}</td>
 			<td>{{phone}}</td>
