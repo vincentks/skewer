@@ -6,7 +6,7 @@ SK.admin = function(userOptions) {
 
 	var that = {};
 	
-	that.load = function() {
+	that.init = function() {
 		$('#addIDsToExistingClients').click(function() {
 			var crud = new FW.crud({
 				module: 'client',

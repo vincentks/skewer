@@ -26,7 +26,7 @@ SK.supplier = function(userOptions) {
 		}
 	});
 
-	that.load = function() {
+	that.init = function() {
 		crud.init();
 	}
 	

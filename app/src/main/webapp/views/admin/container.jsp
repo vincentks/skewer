@@ -12,7 +12,7 @@
 		
 		<script type="text/javascript">
 			$(document).ready(function() {
-				SK.admin().load();
+				SK.admin().init();
 			});
 		</script>
 	</head>

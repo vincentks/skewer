@@ -22,7 +22,15 @@ FW.crud = function(userOptions) {
 		/**
 		 * FW.ui component to be used by this component - has to be defined when different than FW.ui
 		 * */
-		ui: null
+		ui: null,
+		/**
+		 * string - message shown to the user once a row is deleted successfully
+		 * */
+		deleteSuccessMessage: null,
+		/**
+		 * string - message shown when user successfully saves a record
+		 * */
+		saveSuccessMessage: null
 	};
 	
     $.extend(true, options, userOptions);
@@ -35,7 +43,9 @@ FW.crud = function(userOptions) {
 		if (options.ui == null) {
 		    options['ui'] = new FW.ui({
 				crud: that,
-				module: options.module
+				module: options.module,
+				deleteSuccessMessage: options.deleteSuccessMessage,
+				saveSuccessMessage: options.saveSuccessMessage
 			});
 		}
 

@@ -7,12 +7,12 @@
 
 		<jsp:include page="/views/include.jsp"></jsp:include>
 		
-		<link rel="stylesheet" type="text/css" href="css/supplier/supplier.css" media="all" />                   
-		<script type="text/javascript" src="scripts/supplier/SK.supplier.js"></script>                 
+		<link rel="stylesheet" type="text/css" href="css/product/product.css" media="all" />                   
+		<script type="text/javascript" src="scripts/product/SK.product.js"></script>                 
 		
 		<script type="text/javascript">
 			$(document).ready(function() {
-				SK.supplier().init();
+				SK.product().init();
 			});
 		</script>
 	</head>
@@ -31,8 +31,6 @@
 			<thead>
 				<th>Id</th>
 				<th>Nome</th>
-				<th class="table-header-phone">Celular</th>
-				<th class="table-header-phone">Telefone fixo</th>
 			</thead>
 			<tbody>
 			</tbody>
@@ -43,21 +41,12 @@
 		<h5>Detalhes</h5>
 		<form class="vertical details-form">
 			<input type="hidden" name="id" id="id" value="">
-			
+
 			<label for="name">Nome</label>
 			<input class="medium" type="text" name="name" id="name">
 			
-			<label for="cell">Celular</label>
-			<input class="small" type="text" name="cell" id="cell">
-			
-			<label for="cell">Telefone fixo</label>
-			<input class="small" type="text" name="phone" id="phone">
-			
-			<label for="name">E-mail</label>
-			<input class="medium" type="text" name="email" id="email">
-			
-			<label for="address">Endereço</label>
-			<textarea class="medium" name="address" id="address"></textarea>
+			<label for="address">Descrição</label>
+			<textarea class="medium" name="description" id="description"></textarea>
 			
 			<button id="saveButton">Salvar</button>
 			<button id="saveAddButton">Salvar & Adicionar</button>
@@ -68,15 +57,13 @@
 	</div>
 
 	<script type="text/x-jquery-tmpl" id="emptyTableTemplate">
-		<tr class="warning"><td colspan="4">Nenhum fornecedor encontrado.</td></tr>
+		<tr class="warning"><td colspan="2">Nenhum produto encontrado.</td></tr>
 	</script>
 
 	<script type="text/x-jquery-tmpl" id="tableRowTemplate">
 		<tr data-id="{{id}}">
 			<td>{{id}}</td>
 			<td>{{name}}</td>
-			<td>{{cell}}</td>
-			<td>{{phone}}</td>
 		</tr>
 	</script>
 
