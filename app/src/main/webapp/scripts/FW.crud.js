@@ -26,11 +26,15 @@ FW.crud = function(userOptions) {
 		/**
 		 * string - message shown to the user once a row is deleted successfully
 		 * */
-		deleteSuccessMessage: null,
+		deleteSuccessMessage: 'Registro excluído com sucesso',
 		/**
 		 * string - message shown when user successfully saves a record
 		 * */
-		saveSuccessMessage: null
+		saveSuccessMessage: 'Registro atualizado com sucesso.',
+		/**
+		 * Callback to invoke once the details panel is shown
+		 * */
+		showDetailsCallback: $.noop
 	};
 	
     $.extend(true, options, userOptions);
@@ -39,13 +43,14 @@ FW.crud = function(userOptions) {
     	key: options.key
     });
     
+    that.getOptions = function() {
+    	return options;
+    }
+    
 	that.init = function() {
 		if (options.ui == null) {
 		    options['ui'] = new FW.ui({
-				crud: that,
-				module: options.module,
-				deleteSuccessMessage: options.deleteSuccessMessage,
-				saveSuccessMessage: options.saveSuccessMessage
+				crud: that
 			});
 		}
 

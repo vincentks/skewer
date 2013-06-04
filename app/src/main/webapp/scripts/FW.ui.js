@@ -8,14 +8,6 @@ FW.ui = function(userOptions) {
 	
 	var options = {
 		/**
-		 * string - message shown to the user once a row is deleted successfully
-		 * */
-		deleteSuccessMessage: 'Registro excluído com sucesso',
-		/**
-		 * string - message shown when user successfully saves a record
-		 * */
-		saveSuccessMessage: 'Registro atualizado com sucesso.',
-		/**
 		 * CRUD object which provides callbacks to database operations
 		 * */
 		crud: null
@@ -54,6 +46,8 @@ FW.ui = function(userOptions) {
 		$('.data-table tr').removeClass('selected');
 
 		$('.details-container form input:first').focus();
+		
+		options.crud.getOptions().showDetailsCallback();
 	}
 	
 	function populateTable() {
@@ -104,7 +98,7 @@ FW.ui = function(userOptions) {
 		
 		$.pnotify({
 			title: 'Sucesso',
-			text: options.saveSuccessMessage,
+			text: crud.getOptions().saveSuccessMessage,
 			type: 'success',
 			delay: 1500,
 			styling: 'jqueryui'
@@ -116,7 +110,7 @@ FW.ui = function(userOptions) {
 
 		$.pnotify({
 			title: 'Sucesso',
-			text: options.deleteSuccessMessage,
+			text: crud.getOptions().deleteSuccessMessage,
 			type: 'success',
 			delay: 1500,
 			styling: 'jqueryui'
@@ -128,7 +122,7 @@ FW.ui = function(userOptions) {
 	that.init = function() {
 		$.pnotify.defaults.history = false;
 		
-		$('.menu li[data-module="' + options.module + '"]').addClass('current');
+		$('.menu li[data-module="' + options.crud.getOptions().module + '"]').addClass('current');
 
 		$('#tableSearchField').keyup(filterTable);
 		$('#deleteButton').click(function() {

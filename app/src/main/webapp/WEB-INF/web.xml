@@ -48,4 +48,14 @@
 		<url-pattern>/admin</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>order</servlet-name>
+		<jsp-file>/views/order/container.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>order</servlet-name>
+		<url-pattern>/order</url-pattern>
+	</servlet-mapping>
+
 </web-app>
