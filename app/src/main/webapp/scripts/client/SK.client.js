@@ -10,7 +10,23 @@ SK.client = function(userOptions) {
 		module: 'client',
 		key: 'clientList',
 		deleteSuccessMessage: 'Cliente excluído com sucesso.',
+		deleteFailMessage: 'Cliente possui pedidos: não pode ser excluído.',
 		saveSuccessMessage: 'Cliente atualizado com sucesso.',
+		deleteValidation: function(id) {
+			var result = true;
+			
+			var orderList = new FW.crud({
+				key: 'orderList'
+			}).list();
+			
+			$.each(orderList, function(i, value) {
+				if (id == value.client) {
+					result = false;
+				}
+			});
+			
+			return result;
+		},
 		saveValidation: function(object) {
 			var result = '';
 			

@@ -39,6 +39,7 @@ SK.order = function(userOptions) {
 			});
 			
 			$('.datepicker').datepicker({
+				autoclose: true,
 				format: 'dd/mm/yyyy',
 				todayBtn: 'linked'
 			});

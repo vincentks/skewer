@@ -20,6 +20,12 @@ FW.crud = function(userOptions) {
 		 * */
 		saveValidation: $.noop,
 		/**
+		 * validation executed once the user tries to delete a record
+		 * */
+		deleteValidation: function(id) {
+			return true;
+		},
+		/**
 		 * FW.ui component to be used by this component - has to be defined when different than FW.ui
 		 * */
 		ui: null,
@@ -70,8 +76,19 @@ FW.crud = function(userOptions) {
 	}
 	
 	that.deleteRecord = function(id) {
-		database.deleteRecord(id);
-		options.ui.onDeleteRecord();
+		var allowDelete = options.deleteValidation(id);
+
+		if (allowDelete) {
+			database.deleteRecord(id);
+			options.ui.onDeleteRecord();
+		} else if ($.trim(options.deleteFailMessage) != '') {
+			$.pnotify({
+				title: 'Erro',
+				text: $.trim(options.deleteFailMessage),
+				type: 'error',
+				styling: 'jqueryui'
+			});			
+		}
 	}
 
 	that.save = function(object) {
