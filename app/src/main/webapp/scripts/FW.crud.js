@@ -34,7 +34,11 @@ FW.crud = function(userOptions) {
 		/**
 		 * Callback to invoke once the details panel is shown
 		 * */
-		showDetailsCallback: $.noop
+		showDetailsCallback: $.noop,
+		/**
+		 * Functions to be added to the row template supplied as parameter to the Mustache engine
+		 * */
+		rowTemplateFunctions: {}
 	};
 	
     $.extend(true, options, userOptions);

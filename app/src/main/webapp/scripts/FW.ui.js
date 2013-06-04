@@ -55,6 +55,8 @@ FW.ui = function(userOptions) {
 		
 		$('.table tbody tr').remove();
 		$.map($(list), function(value, i) {
+			$.extend(value, options.crud.getOptions().rowTemplateFunctions);
+			
 			var $tr = Mustache.render($('#tableRowTemplate').html(), value);
 			
 			$('.table tbody').append($tr);
@@ -157,6 +159,9 @@ FW.ui = function(userOptions) {
 			});
 
 			$('.details-container').show();
+			
+			options.crud.getOptions().showDetailsCallback();
+			
 			$('.details-container form input:first').focus();
         });
 

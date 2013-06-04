@@ -35,13 +35,30 @@ SK.order = function(userOptions) {
 				},
 			    formatResult: function(item) { 
 					return item.name; 
-				}
+	            }
 			});
 			
 			$('.datepicker').datepicker({
 				format: 'dd/mm/yyyy',
 				todayBtn: 'linked'
 			});
+		},
+		rowTemplateFunctions: {
+			getClient: function() {
+				var result = '';
+				
+				if ($.trim(this.client) != null) {
+					var client = new FW.crud({
+						key: 'clientList'
+					}).get(this.client);
+					
+					if (client != null) {
+						result = client.name;
+					}
+				}
+				
+				return result;
+			}
 		}
 	});
 
