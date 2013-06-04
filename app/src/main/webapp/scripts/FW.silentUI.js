@@ -12,5 +12,7 @@ FW.silentUI = function(userOptions) {
 	
 	that.onSaveSuccess = $.noop;
 	
+	that.getOptions = $.noop;
+	
 	return that;
 }

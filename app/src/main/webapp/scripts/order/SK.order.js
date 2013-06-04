@@ -37,6 +37,11 @@ SK.order = function(userOptions) {
 					return item.name; 
 				}
 			});
+			
+			$('.datepicker').datepicker({
+				format: 'dd/mm/yyyy',
+				todayBtn: 'linked'
+			});
 		}
 	});
 

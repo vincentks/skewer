@@ -20,8 +20,10 @@
 
 	<jsp:include page="/views/header.jsp"></jsp:include>
 
-	<div class="container">
-		<button id="addIDsToExistingClients">Adicionar chave aos clientes existentes</button>
+	<div class="row">
+		<div class="span4">
+			<button class="btn" id="addIDsToExistingClients">Adicionar chave aos clientes existentes</button>
+		</div>
 	</div>
 
 </body>

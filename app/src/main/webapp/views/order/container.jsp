@@ -1,3 +1,5 @@
+<%@ taglib prefix="fwTags" tagdir="/WEB-INF/tags" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,41 +22,41 @@
 
 	<jsp:include page="/views/header.jsp"></jsp:include>
 
-	<div class="container search-container">
-		<form>
-			<input id="tableSearchField" name="tableSearchField" type="text" />	
-			<button id="searchButton">Pesquisar</button>
-			<button id="addButton">Adicionar</button>
-		</form>
+	<div class="row">
+		<div class="span8">
+			<div class="search-container">
+				<form class="form-search">
+					<input class="search-query" id="tableSearchField" name="tableSearchField" type="text" />	
+					<button class="btn btn-primary" id="searchButton">Pesquisar</button>
+					<button class="btn" id="addButton">Adicionar</button>
+				</form>
 	
-		<table class="sortable data-table">
-			<thead>
-				<th>Id</th>
-				<th>Data</th>
-				<th>Cliente</th>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-	</div>
-	
-	<div class="details-container hide">
-		<h5>Detalhes</h5>
-		<form class="vertical details-form">
-			<input type="hidden" name="id" id="id" value="">
-
-			<label for="name">Data</label>
-			<input class="medium" type="text" name="date" id="date">
-			
-			<label for="cell">Cliente</label>
-			<input type="text" class="small" name="client" id="client">
-			
-			<button id="saveButton">Salvar</button>
-			<button id="saveAddButton">Salvar & Adicionar</button>
-			<button id="deleteButton">Excluir</button>
-			<button id="hideDetailsButton">Cancelar</button>
-			
-		</form>
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<th>Id</th>
+						<th>Data</th>
+						<th>Cliente</th>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="span6">
+			<div class="details-container hide">
+				<h5>Detalhes</h5>
+				<form class="vertical details-form">
+					<input type="hidden" name="id" id="id" value="">
+		
+					<label for="name">Data</label>
+					<input class="medium datepicker" type="text" name="date" id="date">
+					
+					<label for="cell">Cliente</label>
+					<input type="text" class="small" name="client" id="client">
+				</form>
+				<fwTags:detailsFormButtons />
+			</div>
+		</div>
 	</div>
 
 	<script type="text/x-jquery-tmpl" id="emptyTableTemplate">

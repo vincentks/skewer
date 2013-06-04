@@ -43,7 +43,7 @@ FW.ui = function(userOptions) {
 
 		$('.details-container form input, .details-container form textarea').val('');
 
-		$('.data-table tr').removeClass('selected');
+		$('.table tr').removeClass('selected');
 
 		$('.details-container form input:first').focus();
 		
@@ -53,11 +53,11 @@ FW.ui = function(userOptions) {
 	function populateTable() {
 		var list = options.crud.list();
 		
-		$('.data-table tbody tr').remove();
+		$('.table tbody tr').remove();
 		$.map($(list), function(value, i) {
 			var $tr = Mustache.render($('#tableRowTemplate').html(), value);
 			
-			$('.data-table tbody').append($tr);
+			$('.table tbody').append($tr);
 		});
 		
 		filterTable();
@@ -66,12 +66,12 @@ FW.ui = function(userOptions) {
 	function filterTable() {
 		var $field = $('#tableSearchField');
 
-		$('.data-table tbody tr.warning').remove();
+		$('.table tbody tr.warning').remove();
 		
 		if ($.trim($field.val()) == '') {
-			$('.data-table tbody tr').show();
+			$('.table tbody tr').show();
 		} else {
-			$('.data-table tbody tr').each(function(i, value) {
+			$('.table tbody tr').each(function(i, value) {
 				var $row = $(value);
 
 				var rowText = $.trim($row.text().toUpperCase());
@@ -85,20 +85,20 @@ FW.ui = function(userOptions) {
 			});
 		}
 		
-		if ($('.data-table tbody tr:visible').length == 0) {
+		if ($('.table tbody tr:visible').length == 0) {
 			var $tr = $('#emptyTableTemplate')
-			$('.data-table tbody').append($tr.html());
+			$('.table tbody').append($tr.html());
 		}
 	}
 	
 	that.onSaveSuccess = function(row) {
 		populateTable();
 
-		$('.data-table tr[data-id="' + row.id + '"]').addClass('selected');
+		$('.table tr[data-id="' + row.id + '"]').addClass('selected');
 		
 		$.pnotify({
 			title: 'Sucesso',
-			text: crud.getOptions().saveSuccessMessage,
+			text: options.crud.getOptions().saveSuccessMessage,
 			type: 'success',
 			delay: 1500,
 			styling: 'jqueryui'
@@ -110,7 +110,7 @@ FW.ui = function(userOptions) {
 
 		$.pnotify({
 			title: 'Sucesso',
-			text: crud.getOptions().deleteSuccessMessage,
+			text: options.crud.getOptions().deleteSuccessMessage,
 			type: 'success',
 			delay: 1500,
 			styling: 'jqueryui'
@@ -122,7 +122,7 @@ FW.ui = function(userOptions) {
 	that.init = function() {
 		$.pnotify.defaults.history = false;
 		
-		$('.menu li[data-module="' + options.crud.getOptions().module + '"]').addClass('current');
+		$('.nav li[data-module="' + options.crud.getOptions().module + '"]').addClass('active');
 
 		$('#tableSearchField').keyup(filterTable);
 		$('#deleteButton').click(function() {
@@ -146,8 +146,8 @@ FW.ui = function(userOptions) {
 			e.stopPropagation();
 		});
 		
-		$('body').off('click', '.data-table tbody tr').on('click', '.data-table tbody tr', function() {
-        	$('.data-table tbody tr').removeClass('selected');
+		$('body').off('click', '.table tbody tr').on('click', '.table tbody tr', function() {
+        	$('.table tbody tr').removeClass('selected');
         	$(this).addClass('selected');
         	
 			var row = options.crud.get($(this).data('id'));
