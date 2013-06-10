@@ -18,9 +18,13 @@ FW.ui = function(userOptions) {
 	function save() {
 		var row = {};
 		
-		$.each($('.details-container form input, .details-container form textarea'), function(i, value) {
-			row[$(value).attr('id')] = $(value).val();
-		});
+		if (options.crud.getOptions().rowSerializer == $.noop) {
+			$.each($('.details-container form input, .details-container form textarea'), function(i, value) {
+				row[$(value).attr('id')] = $(value).val();
+			});
+		} else {
+			row = options.crud.getOptions().rowSerializer();
+		}
 		
 		var result = options.crud.save(row);
 		
@@ -102,8 +106,7 @@ FW.ui = function(userOptions) {
 			title: 'Sucesso',
 			text: options.crud.getOptions().saveSuccessMessage,
 			type: 'success',
-			delay: 1500,
-			styling: 'jqueryui'
+			delay: 1500
 		});			
 	}
 	
@@ -114,8 +117,7 @@ FW.ui = function(userOptions) {
 			title: 'Sucesso',
 			text: options.crud.getOptions().deleteSuccessMessage,
 			type: 'success',
-			delay: 1500,
-			styling: 'jqueryui'
+			delay: 1500
 		});			
 		
 		hideDetails();
@@ -160,7 +162,7 @@ FW.ui = function(userOptions) {
 
 			$('.details-container').show();
 			
-			options.crud.getOptions().showDetailsCallback();
+			options.crud.getOptions().showDetailsCallback(row);
 			
 			$('.details-container form input:first').focus();
         });

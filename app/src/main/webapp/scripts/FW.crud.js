@@ -44,7 +44,11 @@ FW.crud = function(userOptions) {
 		/**
 		 * Functions to be added to the row template supplied as parameter to the Mustache engine
 		 * */
-		rowTemplateFunctions: {}
+		rowTemplateFunctions: {},
+		/**
+		 * Function used to serialize a form so it can be persisted
+		 * */
+		rowSerializer: $.noop
 	};
 	
     $.extend(true, options, userOptions);
@@ -85,8 +89,7 @@ FW.crud = function(userOptions) {
 			$.pnotify({
 				title: 'Erro',
 				text: $.trim(options.deleteFailMessage),
-				type: 'error',
-				styling: 'jqueryui'
+				type: 'error'
 			});			
 		}
 	}
@@ -100,8 +103,7 @@ FW.crud = function(userOptions) {
 			$.pnotify({
 				title: 'Erro',
 				text: $.trim(message),
-				type: 'error',
-				styling: 'jqueryui'
+				type: 'error'
 			});			
 		} else {
 			database.save(object);

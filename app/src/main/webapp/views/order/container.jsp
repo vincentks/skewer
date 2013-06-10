@@ -49,10 +49,23 @@
 					<input type="hidden" name="id" id="id" value="">
 		
 					<label for="name">Data</label>
-					<input class="medium datepicker" type="text" name="date" id="date">
+					<input class="input-small datepicker" type="text" name="date" id="date">
 					
 					<label for="cell">Cliente</label>
-					<input type="text" class="small" name="client" id="client">
+					<input type="text" class="input-large" name="client" id="client">
+
+					<label class="products-label">Produtos</label>
+					<div class="well products-container">
+
+					</div>					
+
+					<label for="cell">Total</label>
+					<div class="input-prepend input-append">
+						<span class="add-on">$</span>
+						<input class="span2 input-medium text-right" name="total" id="total" type="text">
+						<span class="add-on">.00</span>
+					</div>
+
 				</form>
 				<fwTags:detailsFormButtons />
 			</div>
@@ -69,6 +82,15 @@
 			<td>{{date}}</td>
 			<td>{{getClient}}</td>
 		</tr>
+	</script>
+	
+	<script type="text/x-jquery-tmpl" id="productRowTemplate">
+		<div class="product-row">
+			<input type="text" class="input-mini product-quantity" name="quantity" id="quantity" placeholder="Qtd.">
+			<input type="text" class="input-medium product-id" name="product" id="product" placeholder="Produto">
+			<a class="btn button-add-product" href="#"><i class="icon-plus"></i> Adicionar</a>
+			<a class="btn button-remove-product" style="display: none;" href="#"><i class="icon-remove"></i> Remover</a>
+		</div>
 	</script>
 
 </body>

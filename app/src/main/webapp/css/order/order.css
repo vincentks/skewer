@@ -1,0 +1,11 @@
+.products-label {
+	padding-top: 10px;
+}
+
+.button-add-product, .button-remove-product {
+	margin-top: -10px;
+}
+
+.product-row .select2-container {
+	margin-top: -10px;
+}
