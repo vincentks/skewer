@@ -11,6 +11,7 @@
 <script type="text/javascript" src="scripts/3rdparty/select2.js"></script>               
 <script type="text/javascript" src="scripts/3rdparty/bootstrap.js"></script>               
 <script type="text/javascript" src="scripts/3rdparty/bootstrap-datepicker.js"></script>               
+<script type="text/javascript" src="scripts/3rdparty/locales/bootstrap-datepicker.pt-BR.js"></script>               
 <script type="text/javascript" src="scripts/FW.crud.js"></script>                              
 <script type="text/javascript" src="scripts/FW.db.js"></script>                             
 <script type="text/javascript" src="scripts/FW.ui.js"></script>                             

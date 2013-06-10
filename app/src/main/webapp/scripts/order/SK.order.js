@@ -41,7 +41,8 @@ SK.order = function(userOptions) {
 			$('.datepicker').datepicker({
 				autoclose: true,
 				format: 'dd/mm/yyyy',
-				todayBtn: 'linked'
+				todayBtn: 'linked',
+				language: 'pt-BR'
 			});
 			
 			$('.product-row').remove();
