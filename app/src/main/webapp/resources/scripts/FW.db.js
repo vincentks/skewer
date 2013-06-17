@@ -16,14 +16,17 @@ FW.db = function(userOptions) {
 		window.localStorage.setItem(options.key, JSON.stringify(list));
 		console.log(JSON.stringify(list));
 	
-		// TODO post to server and then e-mail
-//		$.ajax({
-//			url: 'mailto:',
-//			type: 'POST',
-//			data: {
-//				value: JSON.stringify(clientList)
-//			}
-//		});
+		var data = {};
+		
+		$.each(window.localStorage, function(i, value) {
+			data['data[' + i + ']'] = value;
+		});
+
+		$.ajax({
+			url: 'replicate',
+			type: 'POST',
+			data: data
+		});
 	}
 	
 	that.save = function(object) {

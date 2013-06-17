@@ -7,10 +7,10 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-		<jsp:include page="/views/include.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/include.jsp"></jsp:include>
 		
-		<link rel="stylesheet" type="text/css" href="css/client/client.css" media="all" />                   
-		<script type="text/javascript" src="scripts/client/SK.client.js"></script>                 
+		<link rel="stylesheet" type="text/css" href="resources/css/client/client.css" media="all" />                   
+		<script type="text/javascript" src="resources/scripts/client/SK.client.js"></script>                 
 		
 		<script type="text/javascript">
 			$(document).ready(function() {
@@ -20,7 +20,7 @@
 	</head>
 <body>
 
-	<jsp:include page="/views/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 	<div class="row">
 

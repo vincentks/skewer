@@ -56,7 +56,7 @@ FW.crud = function(userOptions) {
     var database = new FW.db({
     	key: options.key
     });
-    
+
     that.getOptions = function() {
     	return options;
     }

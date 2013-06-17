@@ -7,20 +7,20 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-		<jsp:include page="/views/include.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/include.jsp"></jsp:include>
 		
-		<link rel="stylesheet" type="text/css" href="css/supplier/supplier.css" media="all" />                   
-		<script type="text/javascript" src="scripts/supplier/SK.supplier.js"></script>                 
+		<link rel="stylesheet" type="text/css" href="resources/css/product/product.css" media="all" />                   
+		<script type="text/javascript" src="resources/scripts/product/SK.product.js"></script>                 
 		
 		<script type="text/javascript">
 			$(document).ready(function() {
-				SK.supplier().init();
+				SK.product().init();
 			});
 		</script>
 	</head>
 <body>
 
-	<jsp:include page="/views/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 	<div class="row">
 
@@ -36,8 +36,6 @@
 					<thead>
 						<th>Id</th>
 						<th>Nome</th>
-						<th class="table-header-phone">Celular</th>
-						<th class="table-header-phone">Telefone fixo</th>
 					</thead>
 					<tbody>
 					</tbody>
@@ -49,21 +47,12 @@
 				<h5>Detalhes</h5>
 				<form class="vertical details-form">
 					<input type="hidden" name="id" id="id" value="">
-					
+		
 					<label for="name">Nome</label>
 					<input class="input-large" type="text" name="name" id="name">
 					
-					<label for="cell">Celular</label>
-					<input class="input-medium" type="text" name="cell" id="cell">
-					
-					<label for="cell">Telefone fixo</label>
-					<input class="input-medium" type="text" name="phone" id="phone">
-					
-					<label for="name">E-mail</label>
-					<input class="input-large" type="text" name="email" id="email">
-					
-					<label for="address">Endereço</label>
-					<textarea class="input-large" rows="4" name="address" id="address"></textarea>
+					<label for="address">Descrição</label>
+					<textarea class="input-large" rows="4" name="description" id="description"></textarea>
 				</form>
 				<fwTags:detailsFormButtons />
 			</div>
@@ -71,15 +60,13 @@
 	</div>
 
 	<script type="text/x-jquery-tmpl" id="emptyTableTemplate">
-		<tr class="warning"><td colspan="4">Nenhum fornecedor encontrado.</td></tr>
+		<tr class="warning"><td colspan="2">Nenhum produto encontrado.</td></tr>
 	</script>
 
 	<script type="text/x-jquery-tmpl" id="tableRowTemplate">
 		<tr data-id="{{id}}">
 			<td>{{id}}</td>
 			<td>{{name}}</td>
-			<td>{{cell}}</td>
-			<td>{{phone}}</td>
 		</tr>
 	</script>
 
